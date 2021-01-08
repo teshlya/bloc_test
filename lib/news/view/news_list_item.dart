@@ -1,10 +1,18 @@
 import 'package:bloc_test/news/models/news.dart';
+import 'package:bloc_test/news/view/news_screen.dart';
 import 'package:flutter/material.dart';
 
-class NewsListItem extends StatelessWidget {
-  const NewsListItem({Key key, @required this.news}) : super(key: key);
+class NewsListItem extends StatefulWidget {
 
   final News news;
+  const NewsListItem({Key key, @required this.news}) : super(key: key);
+
+  @override
+  _NewsListItemState createState() => _NewsListItemState();
+}
+
+class _NewsListItemState extends State<NewsListItem> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +21,8 @@ class NewsListItem extends StatelessWidget {
       child: SizedBox(
           height: 120,
           child: Stack(children: <Widget>[
-            _getCard(news),
-            _onTapCard(news),
+            _getCard(widget.news),
+            _onTapCard(widget.news),
           ])),
     );
   }
@@ -39,12 +47,12 @@ class NewsListItem extends StatelessWidget {
   }
 
   _openNews(News news) {
-    /*Navigator.push(
+    Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => NewsScreen(
               news: news,
-            )));*/
+            )));
   }
 
   Widget _getContainCard(News news) {
